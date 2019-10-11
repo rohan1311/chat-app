@@ -12,7 +12,7 @@ var messages=[]
 var users=[]
 
 app.get('/', (req, res) => {
-   res.sendFile('test.html', {root: __dirname })
+   res.sendFile('index.html', {root: __dirname })
 })
 
 app.post('/send_message', urlencodedParser, (req,res) => {
