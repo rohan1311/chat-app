@@ -30,7 +30,11 @@ $(document).ready(function(){
     if($("#unit").attr("placeholder")!="Username"){
     if(e.which!=13){
         typing=true
-        socket.emit('typing', {user:user, typing:true})
+        
+        if(typingSent == false)
+            socket.emit('typing', {user:user, typing:true})
+        
+        typingSent = true
         clearTimeout(timeout)
         timeout=setTimeout(typingTimeout, 1500)
     }else{
@@ -57,6 +61,7 @@ socket.on('message',getMessages)
 
 function typingTimeout(){
     typing=false
+    typingSent = false
     socket.emit('typing', {user:user, typing:false})
 }
 
